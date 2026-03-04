@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokéVoice</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>PokéVoice</h1>
+        <p class="subtitle">Say a Pokémon name to get its info</p>
+      </header>
+
+      <main>
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ko">한국어</button>
+        </div>
+
+        <!-- Voice Input Section -->
+        <section class="voice-section">
+          <button id="mic-btn" class="mic-btn" title="Click to speak">
+            <svg id="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </button>
+          <p id="status-text" class="status-text">Click the mic and say a Pokémon name</p>
+          <div class="manual-input">
+            <input type="text" id="pokemon-input" placeholder="Or type a Pokémon name..." />
+            <button id="search-btn">Search</button>
+          </div>
+          <p id="ko-hint" class="ko-hint hidden">한국어 포켓몬 이름을 말하거나 입력하세요</p>
+          <div id="suggestions" class="suggestions hidden"></div>
+        </section>
+
+        <!-- Result Section --> 
+        <section id="result" class="result hidden">
+          <div class="card">
+            <div class="card-header">
+              <div class="pokemon-types" id="types"></div>
+              <img id="pokemon-sprite" src="" alt="" />
+              <h2 id="pokemon-name"></h2>
+              <span id="pokemon-id" class="pokemon-id"></span>
+            </div>
+
+            <div class="card-body">
+              <div class="matchup-section">
+                <div class="matchup-group" id="matchup-weak"></div>
+                <div class="matchup-group" id="matchup-resist"></div>
+                <div class="matchup-group" id="matchup-immune"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Error Section -->
+        <section id="error-msg" class="error-msg hidden">
+          <p id="error-text"></p>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
