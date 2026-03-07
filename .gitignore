@@ -1,0 +1,16 @@
+# SSL certs (local dev only)
+cert.pem
+key.pem
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
