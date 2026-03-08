@@ -1,3 +1,9 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+
 # SSL certs (local dev only)
 cert.pem
 key.pem
