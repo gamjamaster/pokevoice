@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────
-//  PokéScan — scan.js
+//  PokéScan — scanner.js
 //  Camera + Gemini Vision API (no training needed)
 // ──────────────────────────────────────────────
 
@@ -34,7 +34,7 @@ let rateLimitedUntil = 0;
 const originalCardHTML = resultSection.innerHTML;
 
 // ──────────────────────────────────────────────
-//  API Key is stored server-side in server.py
+//  API Key is stored server-side in server.js
 // ──────────────────────────────────────────────
 scanStatus.textContent = 'Ready! Start the camera to scan Pokémon.';
 
@@ -46,7 +46,7 @@ async function startCamera() {
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
     showError(
       'Camera not available. This page must be opened via HTTPS.\n' +
-      'Use: https://' + location.hostname + ':8443/scan.html'
+      'Use: https://' + location.hostname + '/scan'
     );
     return;
   }

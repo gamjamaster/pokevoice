@@ -1,5 +1,6 @@
 // ──────────────────────────────────────────────
-//  PokéVoice — app.js
+//  PokéVoice — voice.js
+//  Camera + Gemini Vision API (no training needed)
 // ──────────────────────────────────────────────
 
 const micBtn        = document.getElementById('mic-btn');
