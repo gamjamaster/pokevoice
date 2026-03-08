@@ -18,7 +18,7 @@ from urllib.error import HTTPError
 # ===== Configuration ==============================================
 PORT = int(os.environ.get('PORT', 8443))
 GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', '')
-GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash')
+GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-1.5-flash')
 IS_PRODUCTION = os.environ.get('RENDER', '') != ''  # Render sets this automatically
 # ==================================================================
 
@@ -127,21 +127,28 @@ class PokeScanHandler(http.server.SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.send_header('Access-Control-Allow-Origin', '*')
+            self.send_header('Content-Length', str(len(result)))
             self.end_headers()
             self.wfile.write(result)
 
         except HTTPError as e:
             error_body = e.read().decode('utf-8', errors='replace')
+            error_bytes = error_body.encode()
             self.send_response(e.code)
             self.send_header('Content-Type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.send_header('Content-Length', str(len(error_bytes)))
             self.end_headers()
-            self.wfile.write(error_body.encode())
+            self.wfile.write(error_bytes)
 
         except Exception as e:
+            error_bytes = json.dumps({'error': str(e)}).encode()
             self.send_response(500)
             self.send_header('Content-Type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.send_header('Content-Length', str(len(error_bytes)))
             self.end_headers()
-            self.wfile.write(json.dumps({'error': str(e)}).encode())
+            self.wfile.write(error_bytes)
 
     def do_OPTIONS(self):
         """Handle CORS preflight."""

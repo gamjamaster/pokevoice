@@ -183,6 +183,9 @@ Rules:
         rateLimitedUntil = Date.now() + 60000;
         throw new Error('Rate limit reached. Wait ~60s then press Scan Now again.');
       }
+      if (res.status === 405) {
+        throw new Error(`Model not supported (HTTP 405). Set a valid GEMINI_MODEL environment variable on the server (e.g. gemini-1.5-flash).`);
+      }
       if (res.status === 400 || res.status === 403) {
         throw new Error(`Invalid API key or quota exceeded: ${errMsg}`);
       }
