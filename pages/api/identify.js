@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   }
 
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
-  const GEMINI_MODEL   = process.env.GEMINI_MODEL   || 'gemma-3-27b-it';
+  const GEMINI_MODEL   = process.env.GEMINI_MODEL   || 'gemini-2.5-flash-lite';
 
   if (!GEMINI_API_KEY) {
     return res.status(500).json({ error: 'GEMINI_API_KEY environment variable is not set.' });
